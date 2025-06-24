@@ -1,0 +1,61 @@
+import os
+from PIL import Image, ImageTk
+import tkinter as tk
+
+# Lista de pratos
+pratos = [
+    "Arroz doce", "Curau de milho", "Doce de abóbora", "Doce de mamão", "Pamonha",
+    "Maria Izabel", "Milho cozido", "Bolo de fubá", "Bolo de mandioca", "Bolo de milho"
+]
+
+# Inicia contagem de votos
+votos = {prato: 0 for prato in pratos}
+
+def mostrar_imagem(prato):
+    caminho = f"imagens/{prato}.jpg"
+    if os.path.exists(caminho):
+        janela = tk.Tk()
+        janela.title(prato)
+        imagem = Image.open(caminho)
+        imagem = imagem.resize((300, 200))
+        foto = ImageTk.PhotoImage(imagem)
+        label = tk.Label(janela, image=foto)
+        label.image = foto  # Referência para manter a imagem
+        label.pack()
+        tk.Label(janela, text=prato, font=("Arial", 16)).pack()
+        janela.mainloop()
+    else:
+        print(f"[!] Imagem não encontrada para: {prato}")
+
+print("=== Sistema de Votação com Imagens ===")
+print("Digite o nome do prato para votar ou 'fim' para encerrar.\n")
+print("Pratos disponíveis:")
+for prato in pratos:
+    print(f"- {prato}")
+print()
+
+while True:
+    voto = input("Seu voto: ").strip().title()
+    if voto.lower() == "fim":
+        break
+    elif voto in votos:
+        votos[voto] += 1
+        print(f"Voto registrado para: {voto}")
+        mostrar_imagem(voto)
+    else:
+        print("Prato inválido. Tente novamente.\n")
+
+print("\n=== Resultado da Votação ===")
+for prato, qtd in votos.items():
+    print(f"{prato}: {qtd} voto(s)")
+
+# Determina o(s) vencedor(es)
+mais_votado = max(votos, key=votos.get)
+empate = [p for p, v in votos.items() if v == votos[mais_votado]]
+
+if len(empate) > 1:
+    print("\nHouve empate entre os pratos:")
+    for p in empate:
+        print(f"- {p}")
+else:
+    print(f"\nPrato vencedor: {mais_votado} com {votos[mais_votado]} voto(s)!")
