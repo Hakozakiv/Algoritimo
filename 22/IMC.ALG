@@ -1,0 +1,43 @@
+Algoritmo "IMC"
+// Algoritmo 
+// Frofº:Diego Ferrare 
+// 
+//
+// Descrição   : calculadora de imc
+// Autor(a)    : victor Hakozaki
+// Data atual  : 14/4/2025
+Var
+// Seção de Declarações das variáveis 
+nome:caractere
+peso:real
+altura:real
+imc:real
+
+Inicio
+// Seção de Comandos, procedimento, funções, operadores, etc... 
+escreval("Nome:")
+   leia (nome)
+escreval("Peso:")
+   leia (peso)
+escreval("Altura:")
+   leia (altura)
+   
+//calculo do imc formula
+imc:= peso/(altura*altura)
+
+//determinação de categoria
+se(imc<18.5)entao
+    escreval (nome," está abaixo do peso")
+senão
+    se(imc >= 18.5)e(imc < 24.9)entao
+        escreval (nome," está com peso normal")
+    senão
+        se(imc >=25 < 29.9)entao
+          escreval (nome," está com sobrepeso")
+        senao
+          escreval (nome," está obeso")
+        fimse
+    fimse
+fimse
+Fimalgoritmo
+

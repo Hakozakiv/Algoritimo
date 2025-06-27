@@ -1,0 +1,28 @@
+Algoritmo "semnome"
+// 
+//  
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Nome do(a) aluno(a)
+// Data atual  : 2/5/2025
+Var
+// Seção de Declarações das variáveis 
+a,b,c,delta:real
+x1,x2:real
+Inicio
+// entrada de dados
+escreva("Digite o valor de a:")
+leia(a)
+escreva("Digite o valor de b:")
+leia(b)
+escreva("Digite o valor de c:")
+leia(c)
+//processso de dados
+delta<- b*b-4*a*c
+se(delta < 0)entao
+     escreval("A equação não possui raízes reais.")
+senao
+     x1 <- (-b + raizq(delta)) / (2*a)
+     x2 <- (-b - raizq(delta)) / (2*a)
+     escreval("As raízes da equação são: ", x1, " e ", x2)
+fimse
+Fimalgoritmo
